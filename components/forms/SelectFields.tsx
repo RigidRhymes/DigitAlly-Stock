@@ -1,3 +1,4 @@
+'use client'
 import {Label} from "@/components/ui/label";
 import {Controller} from "react-hook-form";
 import {
@@ -24,13 +25,13 @@ const SelectFields = ({name, label, placeholder, options, control, error, requir
                                     <SelectValue placeholder={placeholder} />
                                 </SelectTrigger>
                                 <SelectContent className='bg-gray-800 border-gray-600 text-white '>
-                                    {options.map((options) => (
-                                        <SelectItem value={options.value} key={options.value} className='focus:bg-gray-600'>
-                                            {options.label}
+                                    {options.map((option) => (
+                                        <SelectItem value={option.value} key={option.value} className='focus:bg-gray-600'>
+                                            {option.label}
                                         </SelectItem>
                                     ))}
                                 </SelectContent>
-                                {error && <p className='text-red-700 text-sm'>{error}</p>}
+                                {error && <p className='text-red-700 text-sm'>{error.message}</p>}
                             </Select>
                         )}/>
 

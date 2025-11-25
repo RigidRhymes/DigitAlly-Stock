@@ -10,13 +10,12 @@ import CountrySelectField from "@/components/forms/CountrySelectField";
 import FooterLink from "@/components/forms/FooterLink";
 
 
-const SignUp = () => {
+const SignIn = () => {
     const {
         register,
         handleSubmit,
-        control,
         formState: { errors, isSubmitting },
-    } = useForm<SignUpFormData>({
+    } = useForm<SignInFormData>({
         defaultValues: {
             email: '',
             password: '',
@@ -55,11 +54,11 @@ const SignUp = () => {
                 />
 
                 <Button type="submit" disabled={isSubmitting} className='yellow-btn w-full mt-5'>
-                    {isSubmitting ? 'Log in to your Account' : 'Start Your Investing Journey' }
+                    {isSubmitting ? 'Signing In...' : 'Log in to your Account' }
                 </Button>
                 <FooterLink text='No Account Yet?' linkText='Sign Up' href='/sign-up'/>
             </form>
         </>
     )
 }
-export default SignUp
+export default SignIn

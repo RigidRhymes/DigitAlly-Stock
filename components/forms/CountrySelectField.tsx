@@ -1,5 +1,6 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
     Popover,
@@ -26,7 +27,7 @@ const CountrySelect = ({value, onChange,} : {value: string, onChange:(value: str
 
     const getFlagEmoji = (countryCode: string) => {
         const codePoints = countryCode
-            .toLowerCase()
+            .toUpperCase()
             .split('')
             .map((char) => 127397 + char.charCodeAt(0))
 
@@ -72,7 +73,7 @@ const CountrySelect = ({value, onChange,} : {value: string, onChange:(value: str
                               className='country-select-item'
                               >
                                   <Check
-                                  className={cn('mr-2 h-4 -4 text-yellow-500', value === country.value ? 'opacity-100' : 'opacity-0')}
+                                  className={cn('mr-2 h-4 w-4 text-yellow-500', value === country.value ? 'opacity-100' : 'opacity-0')}
                                   />
                                   <span className='flex items-center gap-2'>
                                       <span>{getFlagEmoji(country.value)}</span>
@@ -92,10 +93,16 @@ const CountrySelectField = ({name, label, control, error, required = false}: Cou
     return(
         <div className='space-y-2'>
             <Label htmlFor={name} className='form-label'>{label}</Label>
-            <Controller name={name} control={control} rules={{required: required ? `Please select ${label.toLowerCase}` : false}} render={({field}) => (
+            <Controller
+                name={name}
+                control={control}
+                rules={{required: required ? `Please select ${label.toLowerCase()}` : false}}
+                render={({field}) =>
+                (
                 <CountrySelect value={field.value} onChange={field.onChange} />
-            )}/>
-            {error && <p className='text-sm text-red-700'>{error}</p>}
+            )}
+            />
+            {error && <p className='text-sm text-red-700'>{error.message}</p>}
             <p className='text-xs text-gray-500'>
                 Helps us show market data and news relevant to you.
             </p>

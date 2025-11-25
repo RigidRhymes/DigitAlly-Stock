@@ -5,7 +5,7 @@ import {cn} from "@/lib/utils";
 const InputFields = ({name, label, placeholder, type = 'text', register, error, validation, disabled, value}: FormInputProps ) => {
     return (
         <div className='space-y-2'>
-            <Label htmlFor={name} form='lael'>
+            <Label htmlFor={name} form='label'>
                 {label}
             </Label>
             <Input
